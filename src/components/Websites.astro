@@ -1,0 +1,24 @@
+---
+import SectionTitle from './SectionTitle.astro';
+import Card from './Card.astro';
+import { websites } from '../data/websites';
+import { Globe } from 'lucide-react'; // Icona mappamondo
+---
+
+<section id="websites" class="py-16 bg-slate-50/50 scroll-mt-16">
+  <SectionTitle 
+    title="Websites & Side Projects" 
+    subtitle="Some independent projects, experiments, and websites I’ve built along the way."
+  />
+
+  <div class="grid md:grid-cols-3 gap-6">
+    {websites.map((site) => (
+      <Card 
+        title={site.title}
+        subtitle={site.subtitle}
+        description={site.description}
+        href={site.href}
+      />
+    ))}
+  </div>
+</section>

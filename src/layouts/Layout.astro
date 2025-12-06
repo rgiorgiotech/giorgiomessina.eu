@@ -1,0 +1,30 @@
+---
+import Header from '../components/Header.astro';
+
+interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="it" class="scroll-smooth">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="Portfolio di Giorgio Messina" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+	</head>
+	<body class="bg-slate-50 text-slate-900 min-h-screen flex flex-col selection:bg-orange-200 selection:text-orange-900">
+		<div class="fixed inset-0 z-0 pointer-events-none bg-gradient-to-br from-slate-50 via-white to-slate-100"></div>
+		
+		<Header /> 
+
+		<main class="relative z-10 flex-grow pt-20">
+			<slot />
+		</main>
+	</body>
+</html>

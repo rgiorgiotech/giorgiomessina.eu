@@ -1,0 +1,23 @@
+---
+import SectionTitle from './SectionTitle.astro';
+import Card from './Card.astro';
+import { universityProjects } from '../data/universityProjects';
+---
+
+<section id="projects" class="py-16 scroll-mt-16">
+  <SectionTitle 
+    title="Academic Projects" 
+    subtitle="Some of the projects I worked on during my time at Politecnico di Milano."
+  />
+
+  <div class="grid md:grid-cols-2 gap-6">
+    {universityProjects.map((project) => (
+      <Card 
+        title={project.title}
+        subtitle={project.subtitle}
+        description={project.description}
+        href={project.href}
+      />
+    ))}
+  </div>
+</section>

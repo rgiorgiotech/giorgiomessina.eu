@@ -1,0 +1,80 @@
+---
+// src/components/Header.astro
+import { Menu, X } from 'lucide-react';
+
+const navItems = [
+  { name: 'Home', href: '#home' },
+  { name: 'About me', href: '#about' },
+  { name: 'Academic projects', href: '#projects' },
+  { name: 'Side projects', href: '#websites' },
+  { name: 'Contact me', href: '#contact' },
+];
+---
+
+<header class="fixed top-0 w-full z-50 backdrop-blur-md bg-white/70 border-b border-slate-200 transition-all duration-300 shadow-sm" id="main-header">
+  <div class="container mx-auto px-4 h-20 flex items-center justify-between">
+    
+    <a href="#" class="text-2xl font-bold text-slate-800 hover:text-orange-600 transition-colors tracking-tight">
+      Giorgio<span class="text-orange-500">.</span>
+    </a>
+
+    <nav class="hidden md:flex gap-8 items-center">
+      {navItems.map((item) => (
+        <a 
+          href={item.href} 
+          class="text-sm font-semibold text-slate-600 hover:text-orange-600 transition-colors relative group"
+        >
+          {item.name}
+          <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-orange-500 transition-all duration-300 group-hover:w-full"></span>
+        </a>
+      ))}
+    </nav>
+
+    <button id="mobile-menu-btn" class="md:hidden text-slate-700 hover:text-orange-600 p-2 transition-colors">
+      <Menu className="w-7 h-7 block" id="icon-menu" />
+      <X className="w-7 h-7 hidden" id="icon-close" />
+    </button>
+  </div>
+
+  <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-slate-100 absolute w-full left-0 top-20 shadow-lg">
+    <nav class="flex flex-col p-4 space-y-2">
+      {navItems.map((item) => (
+        <a 
+          href={item.href} 
+          class="mobile-link text-slate-600 font-medium hover:text-orange-600 hover:bg-orange-50 block py-3 px-4 rounded-lg transition-colors"
+        >
+          {item.name}
+        </a>
+      ))}
+    </nav>
+  </div>
+</header>
+
+<script>
+  const btn = document.getElementById('mobile-menu-btn');
+  const menu = document.getElementById('mobile-menu');
+  const iconMenu = document.getElementById('icon-menu');
+  const iconClose = document.getElementById('icon-close');
+  
+  // Selezioniamo tutti i link dentro il menu mobile
+  const mobileLinks = document.querySelectorAll('.mobile-link');
+
+  // Funzione per chiudere il menu
+  const closeMenu = () => {
+    menu?.classList.add('hidden');
+    iconMenu?.classList.remove('hidden');
+    iconClose?.classList.add('hidden');
+  };
+
+  // Toggle al click del bottone hamburger
+  btn?.addEventListener('click', () => {
+    menu?.classList.toggle('hidden');
+    iconMenu?.classList.toggle('hidden');
+    iconClose?.classList.toggle('hidden');
+  });
+
+  // Chiudi il menu quando si clicca su un link
+  mobileLinks.forEach(link => {
+    link.addEventListener('click', closeMenu);
+  });
+</script>
